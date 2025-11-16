@@ -1,0 +1,28 @@
+# Core crawling and parsing
+selenium
+webdriver-manager
+requests
+beautifulsoup4
+fake-useragent
+
+# Database
+pymongo
+
+# Data processing and visualization
+pandas
+numpy
+matplotlib
+Pillow
+wordcloud
+
+# NLP & Chinese text
+jieba
+
+# Machine learning & clustering
+scikit-learn
+scipy
+
+# PaddlePaddle & PaddleHub (SKEP / sentiment models)
+# NOTE: choose paddlepaddle or paddlepaddle-gpu depending on your platform (CPU/GPU)
+paddlepaddle
+paddlehub
