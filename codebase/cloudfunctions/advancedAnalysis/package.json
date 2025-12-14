@@ -1,0 +1,16 @@
+{
+  "name": "advancedanalysis",
+  "version": "1.0.0",
+  "description": "高级舆情分析云函数 - 词云、直方图、情感分析",
+  "main": "index.js",
+  "dependencies": {
+    "jieba": "^1.0.0",
+    "wx-server-sdk": "^3.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

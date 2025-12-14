@@ -1,0 +1,94 @@
+<!--pages/crawler/index.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">数据采集中心</text>
+    <text class="subtitle">从东方财富获取股票数据</text>
+  </view>
+
+  <view class="config-section">
+    <view class="section-title">爬取配置</view>
+    
+    <view class="config-item">
+      <text class="label">股票代码:</text>
+      <input class="stock-input" placeholder="请输入6位股票代码" 
+             value="{{stockCode}}" bindinput="onStockCodeInput" 
+             maxlength="6" type="number" />
+    </view>
+
+    <view class="config-item">
+      <text class="label">股票名称:</text>
+      <input class="stock-input" placeholder="请输入股票名称（用于新闻搜索）" 
+             value="{{stockName}}" bindinput="onStockNameInput" />
+    </view>
+    
+    <view class="config-item">
+      <text class="label">爬取类型:</text>
+      <view class="checkbox-group">
+        <label class="checkbox-label" wx:for="{{['posts', 'news']}}" wx:key="*this">
+          <checkbox value="{{item}}" checked="{{crawlTypes.indexOf(item) !== -1}}" 
+                   bindtap="onTypeChange" data-type="{{item}}"/>
+          <text class="checkbox-text">{{item === 'posts' ? '股吧发帖' : '新闻资讯'}}</text>
+        </label>
+      </view>
+    </view>
+
+    <view class="config-item">
+      <text class="label">爬取页数:</text>
+      <slider value="{{pages}}" min="1" max="5" show-value 
+              bindchange="onPagesChange" />
+    </view>
+  </view>
+
+  <view class="action-section">
+    <button class="primary-btn" bindtap="startCrawling" 
+            disabled="{{loading || crawlTypes.length === 0}}">
+      {{loading ? '爬取中...' : '开始爬取'}}
+    </button>
+  </view>
+
+  <view class="progress-section" wx:if="{{loading}}">
+    <progress percent="{{progress}}" show-info stroke-width="6" />
+    <text class="status-text">{{status}}</text>
+  </view>
+
+  <view class="results-section" wx:if="{{!loading && results.length > 0}}">
+    <view class="section-title">
+      <text>爬取结果</text>
+      <text class="toggle-detail" bindtap="toggleDetail">
+        {{showDetail ? '收起' : '展开'}}详情
+      </text>
+    </view>
+
+    <view class="summary">
+      <text>成功爬取股票 {{results[0].stock_code}} 的数据</text>
+      <text>发帖: {{results[0].posts.count}} 条</text>
+      <text>新闻: {{results[0].news.count}} 条</text>
+    </view>
+
+    <view class="detail-results" wx:if="{{showDetail}}">
+      <view class="result-section">
+        <text class="section-subtitle">发帖数据 (前{{results[0].posts.data.length}}条)</text>
+        <view class="data-item" wx:for="{{results[0].posts.data}}" wx:key="index">
+          <text class="data-title">{{item.post_title}}</text>
+          <text class="data-meta">作者: {{item.author}} | 阅读: {{item.read_count}} | 时间: {{item.post_time}}</text>
+        </view>
+      </view>
+
+      <view class="result-section" wx:if="{{results[0].news.count > 0}}">
+        <text class="section-subtitle">新闻数据 (前{{results[0].news.data.length}}条)</text>
+        <view class="data-item" wx:for="{{results[0].news.data}}" wx:key="index">
+          <text class="data-title">{{item.news_title}}</text>
+          <text class="data-meta">来源: {{item.news_source}} | 时间: {{item.news_time}}</text>
+        </view>
+      </view>
+    </view>
+
+    <button class="secondary-btn" bindtap="viewDataStats">
+      查看数据分析
+    </button>
+  </view>
+
+  <view class="error-section" wx:if="{{!loading && status && results.length === 0}}">
+    <text class="error-text">{{status}}</text>
+  </view>
+</view>

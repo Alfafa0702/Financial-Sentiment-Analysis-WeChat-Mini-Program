@@ -1,0 +1,11 @@
+{
+  "name": "crawlStockData",
+  "version": "1.0.0",
+  "description": "根据前端输入爬取股票数据",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12"
+  }
+}

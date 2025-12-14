@@ -1,0 +1,79 @@
+<view class="page">
+  <view class="page-header">
+    <text class="page-title">舆情分析</text>
+    <text class="page-sub">分析对象：股吧发帖、新闻（不包含研报）</text>
+  </view>
+  <view class="form">
+    <view class="form-row">
+      <text class="label">股票代码</text>
+      <input class="input" placeholder="例如: 600036" value="{{stock}}" bindinput="onStockInput"/>
+    </view>
+
+    <view class="form-row">
+      <text class="label">开始日期 <text class="required">*</text></text>
+      <picker mode="date" value="{{startDate}}" bindchange="onStartDateChange">
+        <view class="input picker">{{startDate ? startDate : '选择开始日期 (例如: 2025-01-01)'}} </view>
+      </picker>
+    </view>
+
+    <view class="form-row">
+      <text class="label">结束日期</text>
+      <picker mode="date" value="{{endDate}}" bindchange="onEndDateChange">
+        <view class="input picker">{{endDate ? endDate : '选择结束日期 (默认为今日)'}} </view>
+      </picker>
+    </view>
+
+    <view class="actions">
+      <button class="run-btn" bindtap="runAnalysis">运行分析</button>
+    </view>
+    <view class="hint">开始日期为必填；结束日期为空则默认今日；最大查询区间 30 天。日期格式: YYYY-MM-DD（例：2025-01-01）。</view>
+  </view>
+
+  <view class="results">
+    <block wx:if="{{loading}}">
+      <text>加载中，请稍候...</text>
+    </block>
+
+    <block wx:elif="{{error}}">
+      <text class="error">{{errorMsg}}</text>
+      <button class="detail-btn" wx:if="{{detailedError}}" bindtap="toggleDetailedError">查看详情</button>
+      <block wx:if="{{showDetailedError}}">
+        <text class="error-detail">{{detailedError}}</text>
+        <button class="detail-btn" bindtap="copyDetailedError">复制详情</button>
+      </block>
+    </block>
+
+    <block wx:elif="{{hasResults}}">
+      <!-- 词云和直方图 -->
+      <view class="chart-container">
+        <text class="chart-title">热点词云</text>
+        <canvas canvas-id="wordcloudCanvas" style="width: 300px; height: 200px;"></canvas>
+      </view>
+
+      <view class="chart-container" style="margin-top: 20px;">
+        <text class="chart-title">情感分布</text>
+        <canvas canvas-id="histogramCanvas" style="width: 300px; height: 200px;"></canvas>
+      </view>
+
+      <!-- 数据统计 -->
+      <view class="stats">
+        <view class="stat-item">
+          <text class="stat-value">{{positivePercent}}%</text>
+          <text class="stat-label">积极情绪</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{post_count}}</text>
+          <text class="stat-label">发帖数量</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{news_count}}</text>
+          <text class="stat-label">新闻数量</text>
+        </view>
+      </view>
+    </block>
+
+    <block wx:else>
+      <text class="hint">填写参数后点击“运行分析”以加载可视化结果。</text>
+    </block>
+  </view>
+</view>

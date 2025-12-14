@@ -1,0 +1,11 @@
+{
+  "name": "crawlReports",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest",
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.12",
+    "pdfkit": "^0.13.0"
+  }
+}

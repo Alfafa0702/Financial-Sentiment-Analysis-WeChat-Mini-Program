@@ -1,21 +1,95 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/AhfOZSIr)
-# CSC6109/CSC5038 — Final Project (Starter Repo)
+# Friendly Financial Sentiment Analysis Mini Program
 
-Welcome! This repository contains the starter layout for the **Final Project**.  
-Please **read** and **follow** all requirements in `final_project.pdf`. The grading breakdown and rubrics are defined in that PDF.
+## Project Overview
 
----
+Leveraging cloud computing technology, this project develops a cloud-based mini program for individual stock sentiment analysis, built on the cloud functions and cloud storage capabilities of the **WeChat Cloud Development Platform**. Focused on solving the core pain points of ordinary investors in public opinion analysis—low efficiency, complex operations, and high costs—the mini program provides an end-to-end service covering **public opinion collection, sentiment analysis with visualization, and research report downloading**, enabling non-professional users to easily access high-quality sentiment analysis support.
 
-## Important Dates
+## Feature Introduction
+![alt text](asset/roadmap.png)
+### 1. Real-time Crawling of Stock Reviews & News
 
-- **Proposal**: **23:59, Oct 19, 2025**
-- **Midterm Report**: **23:59, Nov 16, 2025**
-- **Final Report & Codebase**: **23:59, Dec 14, 2025**
+For specified stock codes and names, it crawls posts from stock forums and news information from the East Money website, then stores the collected data in the cloud database.
 
+### 2. Public Opinion Analysis
 
----
+Based on the stock code and optional time range parameters passed from the frontend, it performs multi-dimensional sentiment analysis on stock reviews and news data, and returns structured results including key indicators such as high-frequency word cloud, sentiment tendency distribution, and comprehensive sentiment score.
 
-## What to Submit via This GitHub Repo
+### 3. Research Report & Financial Report Download
 
-All submissions are via **commits/pushes** to this repository before the deadlines above.
+According to the stock code or name passed from the frontend, it crawls PDF versions of research reports, stores them in cloud storage, and provides temporary direct download links for users.
 
+## Directory Structure
+
+```Plain Text
+    miniprogram-2/
+    ├── cloudfunctions/       # Cloud function directory
+    │   ├── advancedAnalysis/ # Advanced sentiment analysis cloud function
+    │   ├── crawlReports/     # Research report crawling cloud function
+    │   └── crawlStockData/   # Stock review & news crawling cloud function
+    ├── miniprogram/          # Mini program frontend directory
+    │   ├── components/       # Reusable public components
+    │   ├── images/           # Image resource directory
+    │   ├── pages/            # Page directory
+    │   │   ├── analysis/     # Public opinion analysis page
+    │   │   ├── download/     # Research report download page
+    │   │   ├── index/        # Homepage
+    │   │   └── crawler/      # Data collection page
+    │   ├── app.js            # Mini program entry file
+    │   ├── app.json          # Global configuration file
+    │   └── app.wxss          # Global style sheet
+    ├── project.config.json   # Project configuration file
+    └── project.private.config.json # Project private configuration file
+```
+
+## Usage Guide
+
+### 1. Development Environment Configuration
+
+- Install WeChat Developer Tools and log in with your WeChat developer account
+
+    - Download link: [https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html) (Stable version is recommended)
+
+- Import the `codebase` into the developer tools
+
+- Configure the Cloud Development Environment ID
+
+    - In WeChat Developer Tools, click the **Cloud Development** icon on the left sidebar
+
+    - Create a new environment or select an existing one, then record the Environment ID
+
+    - Set the `envId` field in `project.config.json` to your recorded Environment ID
+
+- Create the required database collections in the Cloud Development Console
+
+### 2. Project Launch
+
+- Click the **Preview** button in WeChat Developer Tools
+
+- Or launch via the command line:
+
+    ```Bash
+    npm run dev
+    ```
+
+### 3. Deployment Instructions
+
+- Frontend code is packaged automatically during the deployment process
+
+- Cloud functions need to be deployed separately: Right-click the target cloud function directory in the Cloud Development Console and select **Upload and Deploy to Cloud**
+
+## Demo Effects
+
+<table border="0" style="border-collapse: collapse;">
+  <tr>
+    <td style="padding: 0; text-align: center;"><img src="asset/image.png" alt="alt text" style="max-width: 100%; height: auto;"></td>
+    <td style="padding: 0; text-align: center;"><img src="asset/image-1.png" alt="alt text" style="max-width: 100%; height: auto;"></td>
+  </tr>
+  <tr>
+    <td style="padding: 0; text-align: center;"><img src="asset/image-2.png" alt="alt text" style="max-width: 100%; height: auto;"></td>
+    <td style="padding: 0; text-align: center;"><img src="asset/image-3.png" alt="alt text" style="max-width: 100%; height: auto;"></td>
+  </tr>
+</table>
+
+## Reference Documents
+
+- [WeChat Cloud Development Official Documentation](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)

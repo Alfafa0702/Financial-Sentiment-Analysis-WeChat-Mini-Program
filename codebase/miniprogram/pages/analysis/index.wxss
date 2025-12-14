@@ -1,0 +1,57 @@
+/* 简单样式 */
+.page { padding: 12px; }
+.page-header { padding: 8px 0 18px 0 }
+.page-title { font-size: 34rpx; font-weight: 700; color: #0b2b4a; display:block; }
+.page-sub { color: #8899aa; font-size: 24rpx; display:block; margin-top:6rpx }
+.required { color: #e54545; margin-left: 6rpx }
+.error { color: #e54545; }
+.detail-btn { margin-top: 6rpx; border-radius: 4rpx; color: #07c160; background: transparent; border: 0; font-size: 24rpx }
+.error-detail { color: #666; font-size: 22rpx; white-space: normal; margin-top: 8rpx }
+.form-row { margin-bottom: 8px; display:flex; align-items:center; }
+.label { width: 80px; }
+.input { flex:1; padding:6px; border:1px solid #eee; border-radius:4px }
+.picker { padding:8px 6px; background-color:#fff; }
+.hint { font-size: 24rpx; color: #888; margin-top: 8px }
+.actions { margin-top:12px }
+.run-btn { background-color:#07c160; color:#fff; padding:8px 12px; border-radius:4px }
+.chart { margin-top:12px; }
+.chart-title { font-weight:bold; margin-bottom:6px }
+.score-row { display:flex; justify-content:space-between }
+
+/* 可视化图表样式 */
+.chart-canvas {
+  width: 300px;
+  height: 200px;
+  border: 1px solid #eee;
+  margin: 10px auto;
+  display: block;
+  background: #fff;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007AFF;
+  display: block;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #666;
+  display: block;
+  margin-top: 5px;
+}

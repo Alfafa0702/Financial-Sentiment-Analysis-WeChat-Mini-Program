@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="title">{{title}}</view>
+  <view class="top_tip">{{subtitle}}</view>
+
+  <view class="feature-grid">
+    <block wx:for="{{buttons}}" wx:key="page" wx:for-item="item" wx:for-index="idx">
+      <view class="{{pressedIndex === idx ? 'feature-card pressed' : 'feature-card'}}" data-page="{{item.page}}" data-idx="{{idx}}" bindtap="jumpPage" bindtouchstart="onPressStart" bindtouchend="onPressEnd" bindtouchcancel="onPressCancel" hover-class="none">
+        <view class="feature-left">
+          <view class="icon-circle">
+            <image class="left-icon" src="{{item.icon}}" mode="widthFix" />
+          </view>
+          <view class="feature-meta">
+            <view class="feature-title">{{item.title}}</view>
+            <view class="feature-desc">点击进入</view>
+          </view>
+        </view>
+        <image class="feature-icon" src="../../images/arrow.svg" mode="widthFix"></image>
+      </view>
+    </block>
+  </view>
+  <cloud-tip-modal showTipProps="{{showTip}}" title="{{title}}" content="{{content}}"></cloud-tip-modal>
+</view>

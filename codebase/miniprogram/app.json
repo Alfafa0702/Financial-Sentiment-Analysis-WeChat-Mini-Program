@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/analysis/index",
+    "pages/download/index",
+    "pages/crawler/index"
+  ],
+  "cloudfunctionRoot": "cloudfunctions/",
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "情绪知多少",
+    "navigationBarTextStyle": "black"
+  }
+}
